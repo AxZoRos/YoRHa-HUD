@@ -1,0 +1,22 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Id": "com.axzoros.yorhahud",
+        "Name": "YoRHa HUD",
+        "Description": "Dynamic NieR:Automata System Monitor",
+        "Icon": "/2b.png",
+        "Authors": [
+            {
+                "Name": "AxZoRos"
+            }
+        ],
+        "Version": "1.0",
+        "License": "MIT",
+        "Category": "System Information",
+        "EnabledByDefault": true
+    },
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-MainScript": "ui/main.qml",
+    "KPackageStructure": "Plasma/Applet"
+}
