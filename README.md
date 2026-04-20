@@ -1,5 +1,6 @@
-
- ![image](contents/hud.png)
+<p align="center">
+  <img src="/contents/hud.png" alt="YoRHa HUD Logo" width="128">
+</p>
 
 <h1 align="center">YoRHa HUD</h1>
 
