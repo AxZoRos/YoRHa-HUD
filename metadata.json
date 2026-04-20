@@ -4,7 +4,7 @@
         "Id": "com.axzoros.yorhahud",
         "Name": "YoRHa HUD",
         "Description": "Dynamic NieR:Automata System Monitor",
-        "Icon": "/2b.png",
+        "Icon": "/hud.png",
         "Authors": [
             {
                 "Name": "AxZoRos"
