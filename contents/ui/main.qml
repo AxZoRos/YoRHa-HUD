@@ -29,7 +29,9 @@ PlasmoidItem {
     fullRepresentation: Item {
         id: container
         Layout.preferredWidth: 420
-        Layout.preferredHeight: 230
+        Layout.preferredHeight: width * (230 / 420)
+        Layout.minimumWidth: 210
+        Layout.minimumHeight: 115
         width: Layout.preferredWidth
         height: Layout.preferredHeight
         clip: true
@@ -38,6 +40,7 @@ PlasmoidItem {
         readonly property string accentColor: "#ffffff"
         readonly property string dimColor: "#888888"
 
+        property real s: width / 420
         property int tick: 0
         property string spinner: "\\"
         property string hexStream: "00 00 00 00"
@@ -74,6 +77,7 @@ PlasmoidItem {
             let total = (g0t.value || 0) + (g1t.value || 0) + (g2t.value || 0) + (g3t.value || 0);
             return (total > 0) ? (used / total * 100) : 0;
         }
+        function fs(x) { return Math.round(x * s) }
 
         function getBar(val) {
             let res = "[";
@@ -118,15 +122,14 @@ PlasmoidItem {
         }
 
         Rectangle {
-            width: parent.width; height: 1; color: accentColor; opacity: 0.1
+            width: parent.width; height: 1 * s; color: accentColor; opacity: 0.1
             NumberAnimation on y { from: 0; to: 230; duration: 4000; loops: Animation.Infinite }
         }
 
         Column {
             anchors.centerIn: parent
-            width: 380
-            spacing: 1
-
+            width: 380 * s
+            spacing: 1 * s
             // ================= Decoration =================
             RowLayout {
                 width: parent.width
@@ -134,8 +137,8 @@ PlasmoidItem {
                 Column {
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                     spacing: 1
-                    Text { text: "BUNKER_LINK : ESTABLISHED [ " + spinner + " ]"; color: accentColor; font.family: fontFam; font.pixelSize: 10; font.bold: true }
-                    Text { text: "SIGNAL_STR  : " + signalStrength.toFixed(1) + "%"; color: accentColor; font.family: fontFam; font.pixelSize: 10 }
+                    Text { text: "BUNKER_LINK : ESTABLISHED [ " + spinner + " ]"; color: accentColor; font.family: fontFam; font.pixelSize: fs(10); font.bold: true }
+                    Text { text: "SIGNAL_STR  : " + signalStrength.toFixed(1) + "%"; color: accentColor; font.family: fontFam; font.pixelSize: fs(10) }
                 }
 
                 Item { Layout.fillWidth: true }
@@ -143,15 +146,15 @@ PlasmoidItem {
                 Column {
                     Layout.alignment: Qt.AlignTop | Qt.AlignRight
                     spacing: 1
-                    Text { text: "UNIT_ID   : 2B_MODEL_S"; color: accentColor; font.family: fontFam; font.pixelSize: 10 }
-                    Text { text: "POD_PROG  : " + podProgram; color: accentColor; font.family: fontFam; font.pixelSize: 10 }
-                    Text { text: "STATUS    : ANALYZING..."; color: dimColor; font.family: fontFam; font.pixelSize: 10 }
+                    Text { text: "UNIT_ID   : 2B_MODEL_S"; color: accentColor; font.family: fontFam; font.pixelSize: fs(10) }
+                    Text { text: "POD_PROG  : " + podProgram; color: accentColor; font.family: fontFam; font.pixelSize: fs(10) }
+                    Text { text: "STATUS    : ANALYZING..."; color: dimColor; font.family: fontFam; font.pixelSize: fs(10) }
                 }
             }
 
-            Item { width: 1; height: 8 }
-            Text { text: "-------------------------------------------------------------"; color: "#444444"; font.family: fontFam; font.pixelSize: 10 }
-            Item { width: 1; height: 8 }
+            Item { width: 1 * s; height: 8 * s }
+            Text { text: "-------------------------------------------------------------"; color: "#444444"; font.family: fontFam; font.pixelSize: fs(10) }
+            Item { width: 1 * s; height: 8 * s }
 
             // ================= SYSTEM MONITOR =================
             RowLayout {
@@ -162,17 +165,17 @@ PlasmoidItem {
                     spacing: 1
                     Row {
                         spacing: 0
-                        Text { text: "CPU_LOAD : "; color: accentColor; font.family: fontFam; font.pixelSize: 10 }
-                        Text { text: getBar(realCpu) + " "; color: accentColor; font.family: fontFam; font.pixelSize: 10; opacity: pulseOpacity }
-                        Text { text: padNum(realCpu); color: accentColor; font.family: fontFam; font.pixelSize: 10 }
-                        Text { text: "%"; color: accentColor; font.family: fontFam; font.pixelSize: 10; opacity: pulseOpacity }
+                        Text { text: "CPU_LOAD : "; color: accentColor; font.family: fontFam; font.pixelSize: fs(10) }
+                        Text { text: getBar(realCpu) + " "; color: accentColor; font.family: fontFam; font.pixelSize: fs(10); opacity: pulseOpacity }
+                        Text { text: padNum(realCpu); color: accentColor; font.family: fontFam; font.pixelSize: fs(10) }
+                        Text { text: "%"; color: accentColor; font.family: fontFam; font.pixelSize: fs(10); opacity: pulseOpacity }
                     }
                     Row {
                         spacing: 0
-                        Text { text: "RAM_USE  : "; color: accentColor; font.family: fontFam; font.pixelSize: 10 }
-                        Text { text: getBar(realRam) + " "; color: accentColor; font.family: fontFam; font.pixelSize: 10; opacity: pulseOpacity }
-                        Text { text: padNum(realRam); color: accentColor; font.family: fontFam; font.pixelSize: 10 }
-                        Text { text: "%"; color: accentColor; font.family: fontFam; font.pixelSize: 10; opacity: pulseOpacity }
+                        Text { text: "RAM_USE  : "; color: accentColor; font.family: fontFam; font.pixelSize: fs(10) }
+                        Text { text: getBar(realRam) + " "; color: accentColor; font.family: fontFam; font.pixelSize: fs(10); opacity: pulseOpacity }
+                        Text { text: padNum(realRam); color: accentColor; font.family: fontFam; font.pixelSize: fs(10) }
+                        Text { text: "%"; color: accentColor; font.family: fontFam; font.pixelSize: fs(10); opacity: pulseOpacity }
                     }
                 }
 
@@ -185,35 +188,35 @@ PlasmoidItem {
                         spacing: 0
                         Text {
                             text: (root.batteryPercent > 0) ? "BATTERY  : " : "VRAM_USED: "
-                            color: accentColor; font.family: fontFam; font.pixelSize: 10
+                            color: accentColor; font.family: fontFam; font.pixelSize: fs(10)
                         }
                         Text {
                             property real val: (root.batteryPercent > 0) ? root.batteryPercent : realVram
                             text: getBar(val) + " "
-                            color: accentColor; font.family: fontFam; font.pixelSize: 10; opacity: pulseOpacity
+                            color: accentColor; font.family: fontFam; font.pixelSize: fs(10); opacity: pulseOpacity
                         }
                         Text {
                             text: (root.batteryPercent > 0) ? padNum(root.batteryPercent) : padNum(realVram)
-                            color: accentColor; font.family: fontFam; font.pixelSize: 10
+                            color: accentColor; font.family: fontFam; font.pixelSize: fs(10)
                         }
                         Text {
                             text: "%"
-                            color: accentColor; font.family: fontFam; font.pixelSize: 10; opacity: pulseOpacity
+                            color: accentColor; font.family: fontFam; font.pixelSize: fs(10); opacity: pulseOpacity
                         }
                     }
                     Row {
                         spacing: 0
-                        Text { text: "GPU_LOAD : "; color: accentColor; font.family: fontFam; font.pixelSize: 10 }
-                        Text { text: getBar(realGpu) + " "; color: accentColor; font.family: fontFam; font.pixelSize: 10; opacity: pulseOpacity }
-                        Text { text: padNum(realGpu); color: accentColor; font.family: fontFam; font.pixelSize: 10 }
-                        Text { text: "%"; color: accentColor; font.family: fontFam; font.pixelSize: 10; opacity: pulseOpacity }
+                        Text { text: "GPU_LOAD : "; color: accentColor; font.family: fontFam; font.pixelSize: fs(10) }
+                        Text { text: getBar(realGpu) + " "; color: accentColor; font.family: fontFam; font.pixelSize: fs(10); opacity: pulseOpacity }
+                        Text { text: padNum(realGpu); color: accentColor; font.family: fontFam; font.pixelSize: fs(10) }
+                        Text { text: "%"; color: accentColor; font.family: fontFam; font.pixelSize: fs(10); opacity: pulseOpacity }
                     }
                 }
             }
 
-            Item { width: 1; height: 8 }
-            Text { text: "-------------------------------------------------------------"; color: "#444444"; font.family: fontFam; font.pixelSize: 10 }
-            Item { width: 1; height: 8 }
+            Item { width: 1 * s; height: 8 * s }
+            Text { text: "-------------------------------------------------------------"; color: "#444444"; font.family: fontFam; font.pixelSize: fs(10) }
+            Item { width: 1 * s; height: 8 * s }
 
             // ================= DECORATION =================
             RowLayout {
@@ -222,9 +225,9 @@ PlasmoidItem {
                 Column {
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                     spacing: 1
-                    Text { text: "> DEPLOYING_WIDE_HUD_MATRIX..."; color: dimColor; font.family: fontFam; font.pixelSize: 9 }
-                    Text { text: "> MEM_STREAM: " + hexStream; color: dimColor; font.family: fontFam; font.pixelSize: 9 }
-                    Text { text: "> NO_ERRORS_DETECTED"; color: dimColor; font.family: fontFam; font.pixelSize: 9 }
+                    Text { text: "> DEPLOYING_WIDE_HUD_MATRIX..."; color: dimColor; font.family: fontFam; font.pixelSize: fs(9) }
+                    Text { text: "> MEM_STREAM: " + hexStream; color: dimColor; font.family: fontFam; font.pixelSize: fs(9) }
+                    Text { text: "> NO_ERRORS_DETECTED"; color: dimColor; font.family: fontFam; font.pixelSize: fs(9) }
                 }
 
                 Item { Layout.fillWidth: true }
@@ -234,22 +237,22 @@ PlasmoidItem {
                     spacing: 1
                     Row {
                         spacing: 0
-                        Text { text: "BLACK_BOX_SYNC : "; color: dimColor; font.family: fontFam; font.pixelSize: 9 }
-                        Text { text: bbSync.toFixed(1) + "%"; color: accentColor; font.family: fontFam; font.pixelSize: 9; opacity: pulseOpacity }
+                        Text { text: "BLACK_BOX_SYNC : "; color: dimColor; font.family: fontFam; font.pixelSize: fs(9) }
+                        Text { text: bbSync.toFixed(1) + "%"; color: accentColor; font.family: fontFam; font.pixelSize: fs(9); opacity: pulseOpacity }
                     }
-                    Text { text: "LOGICAL_VIRUS  : CLEAR"; color: dimColor; font.family: fontFam; font.pixelSize: 9 }
-                    Text { text: "RELAY_STATION  : ORBITAL"; color: dimColor; font.family: fontFam; font.pixelSize: 9 }
+                    Text { text: "LOGICAL_VIRUS  : CLEAR"; color: dimColor; font.family: fontFam; font.pixelSize: fs(9) }
+                    Text { text: "RELAY_STATION  : ORBITAL"; color: dimColor; font.family: fontFam; font.pixelSize: fs(9) }
                 }
             }
 
-            Item { width: 1; height: 8 }
+            Item { width: 1 * s; height: 8 * s }
 
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: (Math.random() > 0.97) ? "[ CRITICAL_CHECK_REQUIRED ]" : "[ ALL_SYSTEMS_NOMINAL ]"
                 color: accentColor
                 font.family: fontFam
-                font.pixelSize: 10
+                font.pixelSize: fs(10)
                 font.bold: true
                 opacity: (text[1] === 'C') ? 0.5 : 1.0
             }
