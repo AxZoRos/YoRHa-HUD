@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Window
 import QtQuick.Layouts
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
@@ -28,19 +29,20 @@ PlasmoidItem {
 
     fullRepresentation: Item {
         id: container
-        Layout.preferredWidth: 420
-        Layout.preferredHeight: width * (230 / 420)
-        Layout.minimumWidth: 210
-        Layout.minimumHeight: 115
+        readonly property real dpr: Screen.devicePixelRatio
+        Layout.preferredWidth: 420 * dpr
+        Layout.preferredHeight: 230 * dpr
+        Layout.minimumWidth: 210 * dpr
+        Layout.minimumHeight: 115 * dpr
         width: Layout.preferredWidth
         height: Layout.preferredHeight
+        property real s: width / 420
         clip: true
 
         readonly property string fontFam: "Hack"
         readonly property string accentColor: "#ffffff"
         readonly property string dimColor: "#888888"
 
-        property real s: width / 420
         property int tick: 0
         property string spinner: "\\"
         property string hexStream: "00 00 00 00"
@@ -256,6 +258,13 @@ PlasmoidItem {
                 font.bold: true
                 opacity: (text[1] === 'C') ? 0.5 : 1.0
             }
+        }
+        Component.onCompleted: {
+            console.log("--- YO RHA DEBUG ---")
+            console.log("Screen DPR:", Screen.devicePixelRatio)
+            console.log("Final Width:", width)
+            console.log("Final Scale (s):", s)
+            console.log("---------------------")
         }
     }
 }
