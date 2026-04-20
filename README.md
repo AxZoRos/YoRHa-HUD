@@ -1,8 +1,16 @@
-# YoRHa-HUD
-YoRHa HUD: A minimal, dynamic system monitor for KDE Plasma 6.
+<p align="center">
+  <img src="/contents/hud.png" alt="YoRHa HUD Logo" width="128">
+</p>
 
+<h1 align="center">YoRHa HUD</h1>
+
+<p align="center">
+  A minimal, dynamic system monitor for KDE Plasma 6.
+</p>
+
+<p align="center">
 <img width="544" height="337" alt="yorhahud2" src="https://github.com/user-attachments/assets/d5489789-085d-4825-aa83-03fa2c7effa0" />
-
+</p>
 
 ## Plasmoid view in full rice:
 
