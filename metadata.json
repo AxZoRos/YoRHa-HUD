@@ -10,9 +10,10 @@
                 "Name": "AxZoRos"
             }
         ],
-        "Version": "1.0",
-        "License": "MIT",
+        "Version": "1.0.1",
+        "License": "GPL-3.0-or-later",
         "Category": "System Information",
+        "Website": "https://github.com/AxZoRos/YoRHa-HUD",
         "EnabledByDefault": true
     },
     "X-Plasma-API-Minimum-Version": "6.0",
