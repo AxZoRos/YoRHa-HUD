@@ -1,8 +1,25 @@
 # YoRHa-HUD
 YoRHa HUD: A minimal, dynamic system monitor for KDE Plasma 6.
 
-<img width="1265" height="746" alt="Снимок экрана_20260420_011158" src="https://github.com/user-attachments/assets/46870797-afae-4f4c-a67e-1d011573a301" />
+<img width="544" height="337" alt="yorhahud2" src="https://github.com/user-attachments/assets/d5489789-085d-4825-aa83-03fa2c7effa0" />
 
+
+## Plasmoid view in full rice:
+
+<img width="1920" height="1080" alt="изображение" src="https://github.com/user-attachments/assets/9824309e-5f6e-4e37-839d-3d19eb0b9e8e" />
+
+
+##  Current Status
+Most of the HUD text is currently **decorative** in nature to maintain NieR's tactical aesthetic.
+
+**Currently, real-time telemetry is implemented for:**
+* `CPU_LOAD`
+* `RAM_USE`
+* `GPU_LOAD`
+* `BATTERY / VRAM_USED`
+
+##  Future Plans
+The goal is to replace all decorative elements with functional system information while maintaining NieR's aesthetic.
 
 
 # Installation
